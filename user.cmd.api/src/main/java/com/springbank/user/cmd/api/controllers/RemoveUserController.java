@@ -4,6 +4,7 @@ import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +24,7 @@ public class RemoveUserController {
 		super();
 		this.commandGateway = commandGateway;
 	}
+	@PreAuthorize("hasAuthority('WRITE_PRIVILEGE')")
 	@DeleteMapping("/{id}")
 	public ResponseEntity<BaseResponse> removeUser(@PathVariable("id") String id){
 		try {

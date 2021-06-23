@@ -42,6 +42,28 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.NEVER);
+         
+       /* http
+        .authorizeRequests()
+            .anyRequest().permitAll()
+            .and()
+            .sessionManagement()
+            .sessionCreationPolicy(SessionCreationPolicy.NEVER)
+            .and().csrf().disable();*/
+        
+       /* http.authorizeRequests()
+        .antMatchers("/login")
+        .permitAll()
+        .antMatchers("/oauth/token/revokeById/**")
+        .permitAll()
+        .antMatchers("/tokens/**")
+        .permitAll().anyRequest()
+        .authenticated().and()
+        .formLogin()
+        .permitAll()
+        .and()
+        .csrf().disable();*/
+       
     }
 
     @Override

@@ -4,6 +4,7 @@ import org.axonframework.queryhandling.QueryGateway;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,7 +26,7 @@ public class UserLookupController {
 		super();
 		this.queryGateway = queryGateway;
 	}
-
+	@PreAuthorize("hasAuthority('READ_PRIVILEGE')")
 	@GetMapping
 	public ResponseEntity<UserLookupResponse> getAllUsers() {
 		try {
@@ -42,6 +43,7 @@ public class UserLookupController {
 		}
 	}
 	
+	@PreAuthorize("hasAuthority('READ_PRIVILEGE')")
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<UserLookupResponse> getUserById(@PathVariable("id") String id ){
 		try {
@@ -56,6 +58,7 @@ public class UserLookupController {
 		}
 	}
 	
+	@PreAuthorize("hasAuthority('READ_PRIVILEGE')")
 	@GetMapping(path = "/search/{filter}")
 	public ResponseEntity<UserLookupResponse> searchuserByFilter(@PathVariable("filter") String filter ){
 		try {
